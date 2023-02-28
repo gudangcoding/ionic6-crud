@@ -1,0 +1,62 @@
+<ion-header>
+  <ion-toolbar color="success">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>List User</ion-title>
+    <ion-buttons slot="primary" (click)="tambahUser()">
+      <ion-button >New
+        <ion-icon slot="end" name="add"> </ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+  <ion-row class="ion-padding-horizontal">
+      <ion-input [(ngModel)]="nome" type="search" (input)="hapus()" placeholder="Cari"></ion-input>
+      <ion-buttons>
+        <ion-button (click)="hapus()">
+          <ion-icon slot="end" name="search"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+  </ion-row>
+
+
+<ion-content class="ion-padding">
+
+    <ion-list>
+      <ion-item-sliding *ngFor="let user of user">
+        <ion-item-options side="start">
+          <ion-item-option (click)="edit(user.id, user.nome, user.user, user.pass_original, user.level)">Edit
+          </ion-item-option>
+        </ion-item-options>
+        <ion-list>
+          <ion-item>{{ user.name }}</ion-item>
+        </ion-list>
+        <ion-item-options side="end">
+          <ion-item-option (click)="tampilEdit(user.id, user.name, user.user, user.pass_original, user.level)" color="warning">Tampil
+          </ion-item-option>
+          <ion-item-option (click)="hapus(user.id)" color="danger">hapus
+          </ion-item-option>
+        </ion-item-options>
+
+      </ion-item-sliding>
+    </ion-list>
+
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="arrow-dropdown"
+
+      refreshingSpinner="circles"
+      refreshingText="memuat...">
+    </ion-refresher-content>
+  </ion-refresher>
+
+
+  <ion-infinite-scroll  (ionInfinite)="loadData($event)">
+    <ion-infinite-scroll-content
+      loadingSpinner="bubbles"
+      loadingText="Tunggu Data sedang dimuat">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

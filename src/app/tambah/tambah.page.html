@@ -1,0 +1,49 @@
+<ion-header>
+    <ion-toolbar color="success">
+        <ion-title>Cadastrar Usuários</ion-title>
+        <ion-buttons slot="start" (click)="usuarios()">
+            <ion-icon slot="start" name="arrow-back"></ion-icon>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+    <ion-item>
+        <ion-label position="floating">
+            Nome
+        </ion-label>
+        <ion-input type="text" [(ngModel)]="nome"></ion-input>
+    </ion-item>
+    <ion-item>
+        <ion-label position="floating">
+            Usuário
+        </ion-label>
+        <ion-input type="email" [(ngModel)]="usuario"></ion-input>
+    </ion-item>
+    <ion-item>
+        <ion-label position="floating">
+            Senha
+        </ion-label>
+        <ion-input [(ngModel)]="senha"></ion-input>
+    </ion-item>
+
+    <ion-item>
+        <ion-label>Nível</ion-label>
+        <ion-select placeholder="Selecione" [(ngModel)]="nivel">
+        <ion-select-option value="Administrador">Administrador</ion-select-option>
+        <ion-select-option value="Farmacêutico">Farmacêutico</ion-select-option>
+        <ion-select-option value="Médico">Médico</ion-select-option>
+        <ion-select-option value="Recepcionista">Recepcionista</ion-select-option>
+        <ion-select-option value="Tesoureiro">Tesoureiro</ion-select-option>
+        </ion-select>
+    </ion-item>
+
+    <ion-button *ngIf="!id" (click)="cadastrar()" color="success" expand="block">
+        Salvar
+    </ion-button>
+
+    <ion-button *ngIf="id" (click)="editar()" color="warning" expand="block">
+        Editar
+    </ion-button>
+
+</ion-content>
